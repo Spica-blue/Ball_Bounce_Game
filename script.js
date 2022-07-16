@@ -56,6 +56,15 @@ function keyUp(e){
     }
 }
 
+function writeText(){
+    ctx.beginPath();
+    ctx.font = "bold 20px monospace"; // 점수용 글자 설정
+    ctx.fillStyle = "black"; // 점수용 글자 설정
+    ctx.fillText("Score:", 20, 30); // .fillText(글자,x,y)
+    ctx.fillText(score,90,30);
+    ctx.closePath();
+}
+
 function drawPaddle(){
     ctx.beginPath();
     ctx.rect(paddleX,$canvas.height-paddleHeight,paddleWidth,paddleHeight);
@@ -76,9 +85,7 @@ function draw() {
     ctx.clearRect(0,0,$canvas.width, $canvas.height); // 캔버스 화면 크기로 삭제
     drawBall(); // 공 그리기
     drawPaddle();  // 패들 그리기
-    // 점수 출력
-    ctx.fillText("Score: ", 20, 30); // .fillText(글자,x,y)
-    ctx.fillText(score,100,30);
+    writeText(); // 점수
 
     // 좌우 벽 공 튕기기
     if(x + dx > $canvas.width - ballRadius || x + dx < ballRadius){
@@ -122,8 +129,6 @@ let score = 0; // 과제2에 사용할 점수용 변수
 let set_id;
 
 if(isStart){
-    ctx.font = "bold 20px monospace"; // 점수용 글자 설정
-    ctx.fillStyle = "black"; // 점수용 글자 설정
     set_id = setInterval(draw, 10); // 함수를 0.01초마다 실행
 }
 else{
